@@ -56,7 +56,7 @@ export default {
                 authorizationCodeGrant: true,
               },
               scopes: [OAuthScope.PROFILE],
-              callbackUrls: [`${nextAuthUrl}/api/auth/callback/cognito`],
+              callbackUrls: [`${nextAuthUrl}/api/auth/callback/cognito`,`https://d1xlptjvxgwwy2.cloudfront.net/api/auth/callback/cognito`],
             },
           },
         },
