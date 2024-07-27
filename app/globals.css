@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth !important;
+}
+
+.container {
+  max-width: 96rem;
+  height: 100%;
+  margin: 0 auto;
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+
+.containerNav {
+  max-width: 96rem;
+  padding: 0.25rem;
+  margin: 0 auto;
+}
+
+.blog-post {
+  padding: 50px 0
+}
+
+.blog-post p {
+  padding-bottom: 15px;
+}
+
+.blog-post blockquote {
+  margin-bottom: 15px;
+}
+
+
+.blog-post blockquote {
+  font-size: large;
+  margin: 30px;
+  padding: 20px;
+  font-weight: 500;
+  background-color: #9999991f;
+  border-left: 5px solid #9999991f;
+}
+
+.blog-post blockquote::before {
+  font-family: Arial;
+  content: "\201C";
+  color: #78C0A8;
+  font-size: 4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+.blog-post blockquote::after {
+  content: '';
+}
+
+.blog-post blockquote span {
+  display: block;
+  color: #333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+.Toastify__close-button>svg {
+  height: 20px !important;
+  width: 20px !important;
+  margin-top: 13px !important;
+}
+
+.Toastify__toast {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.Toastify__toast-theme--dark {
+  background: #121826f2 !important;
+}
+
+.textFirstCap::first-letter {
+  text-transform: capitalize;
+
+}
+
+
+
+
+@supports not selector(::-webkit-scrollbar) {
+  html.dark body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
+.ag-theme-alpine,
+.ag-theme-alpine-dark {
+  font-family: "Inter", sans-serif !important;
+}
+
+.ag-root-wrapper {
+  border: none !important;
+}
+
+.ag-ltr .ag-cell {
+  padding: 10px;
+}
+
+.ag-header-cell-text {
+  color: var(--ag-header-foreground-color) !important;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: break-spaces;
+}
+
+html.dark .ag-body .ag-body-viewport {
+  background-color: #212936;
+}
+
+html.dark .ag-row {
+  background-color: #212936;
+  color: #ffffff;
+  border-color: rgb(57 65 80);
+}
+
+html.dark .ag-row.ag-row-even {
+  background-color: rgb(37 46 60);
+}
+
+html.dark .ag-header-cell,
+html.dark .ag-header-cell:hover {
+  color: #ffffff;
+  background-color: #1c222e !important;
+  border-color: rgb(57 65 80);
+}
+
+html.dark .ag-header,
+html.dark .ag-advanced-filter-header {
+  background-color: #1d222d;
+}
+
+html.dark .ag-header-cell-text {
+  color: #ffffff !important;
+}
+
+html.dark .ag-pinned-left-header {
+  border-right: var(--ag-borders-critical) #394150;
+}
+
+html.dark .ag-pinned-right-header {
+  border-left: var(--ag-borders-critical) #394150;
+}
+
+html.dark .ag-header-row:not(:first-child) .ag-header-cell:not(.ag-header-span-height.ag-header-span-total) {
+  border-color: rgb(57 65 80);
+}
+
+html.dark .ag-ltr input[class^="ag-"] {
+  background-color: rgb(37 46 60);
+  border-color: rgb(57 65 80);
+  color: #ffffff !important;
+}
+
+html.dark .ag-paging-panel {
+  border-top-color: #394150;
+  background-color: #1d222d;
+  color: #fff;
+}
+
+html.dark .ag-cell.ag-cell-first-right-pinned:not(.ag-cell-range-left):not(.ag-cell-range-single-cell) {
+  border-left: var(--ag-borders-critical) #394150;
+}
+
+html.dark .ag-cell.ag-cell-last-left-pinned:not(.ag-cell-range-right):not(.ag-cell-range-single-cell) {
+  border-right: var(--ag-borders-critical) #394150;
+}
+
+html.dark .ag-header {
+  border-bottom: var(--ag-borders-critical) #394150;
+}
+
+.ql-container.ql-snow {
+  border: 1px solid #d2d5da !important;
+  border-radius: 0 0 8px 8px;
+}
+
+.ql-toolbar.ql-snow {
+  border: 1px solid #d2d5da !important;
+  border-radius: 8px 8px 0 0;
+}
+
+html.dark .ql-container.ql-snow,
+html.dark .ql-toolbar.ql-snow {
+  color: #fff;
+
+}
+
+html.dark .ql-snow .ql-stroke {
+  stroke: #fff;
+
+}
+
+.admin-image-picker [type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.admin-image-picker [type=radio]+img {
+  cursor: pointer;
+}
+
+.admin-image-picker [type=radio]:checked+img {
+  border: 2px solid #ccc;
+  padding: 3px;
+}
+
+html.dark .react-confirm-alert-overlay{
+  
+  background: rgb(41 50 64 / 58%);
+}
