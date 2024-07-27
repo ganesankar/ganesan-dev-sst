@@ -31,10 +31,10 @@ export default function ProjectPage() {
         setProjectItemLoading(false);
         setProjectItemEntries(entries);
       } else {
-        console.error("Error fetching BlogPost entries:", response.status);
+        console.error("Error fetching projects entries:", response.status);
       }
     } catch (error) {
-      console.error("Error fetching BlogPost entries:", error);
+      console.error("Error fetching projects entries:", error);
     }
   };
   return (

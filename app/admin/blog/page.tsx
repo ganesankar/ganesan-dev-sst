@@ -146,7 +146,6 @@ export default function BlogPage() {
   }, []);
   const fetchBlogPostEntries = async () => {
     try {
-      console.log("session",session)
       const response = await getPosts(session?.accessToken);
       setBlogPostsLoading(false);
       setApiData(response);

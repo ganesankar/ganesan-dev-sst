@@ -14,8 +14,8 @@ export const getUploads = async (accessToken): Promise<UploadItem[]> => {
       return [];
     }
   } catch (error) {
-    console.error("Error fetching Posts", error);
-    return error;
+    console.error("Error fetching uploads", error);
+    return [];
   }
 };
 
@@ -29,7 +29,7 @@ export const generateSignedUrl = async (fileName, accessToken)=> {
     });
     return await response.json();
   } catch (error) {
-    console.error("Error fetching Post", error);
+    console.error("Error fetching uploads", error);
     return error;
   }
 };
@@ -46,7 +46,7 @@ export const deleteUpload = async (item, accessToken) => {
 
     return await response.json();
   } catch (error) {
-    console.error("Error updating Posts", error);
+    console.error("Error updating uploads", error);
     return error;
   }
 };

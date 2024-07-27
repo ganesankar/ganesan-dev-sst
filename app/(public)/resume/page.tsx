@@ -27,32 +27,34 @@ export default function ProjectPage() {
     try {
       setResumeLoading(true);
       const response = await fetch("/api/resume");
-      let newArray = []
+      let newArray = [];
       if (response.ok) {
         const entries = await response.json();
-        const groups = groupBy(entries, "category");
-        //const ordered = Object.keys(groups);
-        const ordered = [
-          "summary",
-          "expertise",
-          "experience",
-          "education",
-          "awards",
-          "projects",
-        ];
-        newArray = ordered.map((type) => ({
-          title: type,
-          content: groups[type].sort((a, b) => {
-            return b.startDate - a.startDate;
-          })
-        }));
+        if (entries?.length > 0) {
+          const groups = groupBy(entries, "category");
+          //const ordered = Object.keys(groups);
+          const ordered = [
+            "summary",
+            "expertise",
+            "experience",
+            "education",
+            "awards",
+            "projects",
+          ];
+          newArray = ordered.map((type) => ({
+            title: type,
+            content: groups[type].sort((a, b) => {
+              return b.startDate - a.startDate;
+            }),
+          }));
+        }
         setResumeLoading(false);
         setResumeEntries(newArray);
       } else {
-        console.error("Error fetching BlogPost entries:", response.status);
+        console.error("Error fetching resume entries:", response.status);
       }
     } catch (error) {
-      console.error("Error fetching BlogPost entries:", error);
+      console.error("Error fetching resume entries:", error);
     }
   };
   return (
@@ -109,14 +111,14 @@ export default function ProjectPage() {
           </div>
         )}
         {!resumeLoading && resumeEntries?.length === 0 && (
-        <div className="flex  justify-center items-center">
-          <div className="text-center py-3">
-            <h6 className="text-lg font-bold dark:text-white">
-              No Resume Details to show!
-            </h6>
+          <div className="flex  justify-center items-center">
+            <div className="text-center py-3">
+              <h6 className="text-lg font-bold dark:text-white">
+                No Resume Details to show!
+              </h6>
+            </div>
           </div>
-        </div>
-      )}
+        )}
         {resumeEntries.map(({ title, content }: any, index: any) => (
           <div key={index} className="">
             {" "}
