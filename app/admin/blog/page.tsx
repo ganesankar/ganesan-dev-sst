@@ -23,15 +23,7 @@ export default function BlogPage() {
   const [apiData, setApiData] = useState<PostItem[]>([]);
   const dateFilterParams = {
     comparator: function (filterLocalDateAtMidnight, cellValue) {
-      var dateAsString = cellValue?.includes("T")
-        ? cellValue.split("T")[0]
-        : cellValue;
-      var dateParts = dateAsString.split("/");
-      var cellDate = new Date(
-        Number(dateParts[2]),
-        Number(dateParts[1]) - 1,
-        Number(dateParts[0])
-      );
+      const cellDate = new Date(cellValue * 1000);
       if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
         return 0;
       }
@@ -79,6 +71,9 @@ export default function BlogPage() {
         field: "createdOn",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.createdOn).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.createdOn).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,
@@ -87,6 +82,9 @@ export default function BlogPage() {
         field: "modifiedOn",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.modifiedOn).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.modifiedOn).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,
@@ -95,6 +93,9 @@ export default function BlogPage() {
         field: "publishedOn",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.publishedOn).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.publishedOn).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,

@@ -92,19 +92,18 @@ export default function ProjectPage() {
               <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {title}
               </h5>
-              <p
+              <div
                 className="font-normal text-gray-700 dark:text-gray-400 pb-6"
                 dangerouslySetInnerHTML={{ __html: content }}
-              ></p>
+              ></div>
               <p className="font-normal text-gray-700 dark:text-gray-400 pb-6">
-                {stacks.map((item, index) => (
+                {stacks?.map((item, index) => (
                   <a
+                  key={`project_link${index}`}
                     href={item?.url}
                     target="_blank"
-                    key={index}
                     className="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-blue-400 mb-2"
                   >
-                    {" "}
                     {item?.name}
                   </a>
                 ))}

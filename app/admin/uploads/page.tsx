@@ -41,15 +41,7 @@ export default function UploadsPage() {
 
   const dateFilterParams = {
     comparator: function (filterLocalDateAtMidnight, cellValue) {
-      var dateAsString = cellValue?.includes("T")
-        ? cellValue.split("T")[0]
-        : cellValue;
-      var dateParts = dateAsString.split("/");
-      var cellDate = new Date(
-        Number(dateParts[2]),
-        Number(dateParts[1]) - 1,
-        Number(dateParts[0])
-      );
+      var cellDate = new Date(cellValue * 1000);
       if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
         return 0;
       }
@@ -114,6 +106,9 @@ export default function UploadsPage() {
         field: "modified",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.modified).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.modified).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,
