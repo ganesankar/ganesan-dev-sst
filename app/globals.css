@@ -38,8 +38,10 @@ html {
   margin: 30px;
   padding: 20px;
   font-weight: 500;
-  background-color: #9999991f;
-  border-left: 5px solid #9999991f;
+  --tw-bg-opacity: 1;
+  --tw-border-opacity: 1;
+  background-color: #f2f4f6;
+  border-left: 2px solid rgb(209, 213, 219)
 }
 
 .blog-post blockquote::before {
@@ -215,7 +217,7 @@ html.dark .ql-snow .ql-stroke {
   padding: 3px;
 }
 
-html.dark .react-confirm-alert-overlay{
-  
+html.dark .react-confirm-alert-overlay {
+
   background: rgb(41 50 64 / 58%);
 }

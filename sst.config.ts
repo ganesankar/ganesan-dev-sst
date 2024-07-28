@@ -56,7 +56,7 @@ export default {
                 authorizationCodeGrant: true,
               },
               scopes: [OAuthScope.PROFILE],
-              callbackUrls: [`${nextAuthUrl}/api/auth/callback/cognito`,`https://d1xlptjvxgwwy2.cloudfront.net/api/auth/callback/cognito`],
+              callbackUrls: [`${nextAuthUrl}/api/auth/callback/cognito`],
             },
           },
         },
@@ -132,6 +132,7 @@ export default {
         COGNITO_CLIENT_SECRET:
           adminUserPool.cdk.userPoolClient.userPoolClientSecret.toString(),
         COGNITO_ISSUER: `https://cognito-idp.${stack.region}.amazonaws.com/${adminUserPool.cdk.userPool.userPoolId}`,
+        NEXTAUTH_URL: nextAuthUrl,
         NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET!,
         NEXT_PUBLIC_UPLOAD_ATTACHMENTS_URL: `https://${uploadsBucket.bucketName}.s3.${stack.region}.amazonaws.com/`,
       };
@@ -272,10 +273,10 @@ export default {
       const site = new NextjsSite(stack, "NextWeb", {
         bind: [api, PostTable, ResumeTable, ProjectsTable, uploadsBucket],
         environment: { ...envVariables, ...ApiURL },
-        /* customDomain: {
+        customDomain: {
           domainName: "ganesan.dev",
           domainAlias: "www.ganesan.dev",
-        }, */
+        },
         edge: true,
       });
 

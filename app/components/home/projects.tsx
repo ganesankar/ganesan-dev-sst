@@ -73,10 +73,10 @@ export default function Projects({
                       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {title}
                       </h5>
-                      <div
-                        className="font-normal text-gray-700 dark:text-gray-400 pb-6"
-                        dangerouslySetInnerHTML={{ __html: content }}
-                      ></div>
+                      <div className="font-normal text-gray-700 dark:text-gray-400 pb-6">
+                        {" "}
+                        {content}
+                      </div>
                       <p className="font-normal text-gray-700 dark:text-gray-400 pb-6">
                         {stacks?.map((item, index) => (
                           <a

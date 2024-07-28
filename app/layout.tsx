@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Flowbite, ThemeModeScript, useThemeMode  } from "flowbite-react";
+
+import Script from 'next/script';
 import { flowbiteTheme } from "@/app/util/theme";
 
 import SEO from "@/app/components/common/SEO";
