@@ -2,6 +2,7 @@
 import { NextApiRequest, NextResponse } from "next/server";
 import { Table } from "sst/node/table";
 import { dynamoDbScan } from "@/app/util/dynamoDb";
+export const dynamic = 'force-dynamic' // defaults to auto
 
 export const GET = async (req) => {
   try {

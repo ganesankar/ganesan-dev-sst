@@ -238,7 +238,9 @@ export default function ResumeEdit() {
               id="description"
               value={resumeItem.description}
               required
-              onChange={(event) => updateFields("description", event.target.value)}
+              onChange={(event) =>
+                updateFields("description", event.target.value)
+              }
               rows={5}
               placeholder="as raw HTML"
               helperText={<> {formError && "description is Mandatory"}</>}
@@ -246,21 +248,26 @@ export default function ResumeEdit() {
           </div>
           <div className="mb-2 block ">
             <div className="flex mr-5">
-              <Label htmlFor="small" value="List" className="relative  w-full " />
-          
-            <div className="relativepl-5">
-              <Button
-                color="gray"
-                pill
-                size="xs"
-                onClick={(d) => {
-                  insertlistingFields("listing");
-                }}
-              >
-                Add
-              </Button>
-            </div>
-          </div>  </div>
+              <Label
+                htmlFor="small"
+                value="List"
+                className="relative  w-full "
+              />
+
+              <div className="relativepl-5">
+                <Button
+                  color="gray"
+                  pill
+                  size="xs"
+                  onClick={(d) => {
+                    insertlistingFields("listing");
+                  }}
+                >
+                  Add
+                </Button>
+              </div>
+            </div>{" "}
+          </div>
           <div className="mb-2 block">
             {resumeItem.listing.map((item: any, index: any) => (
               <div className="flex mb-2" key={`resumelistingItem${index}`}>

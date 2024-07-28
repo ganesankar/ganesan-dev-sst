@@ -6,7 +6,14 @@ import { useSession } from "next-auth/react";
 import { ColDef } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import { Button, Spinner, FileInput, Label, Modal ,Clipboard } from "flowbite-react";
+import {
+  Button,
+  Spinner,
+  FileInput,
+  Label,
+  Modal,
+  Clipboard,
+} from "flowbite-react";
 import { toast } from "react-toastify";
 import { getMaterialFileIcon } from "file-extension-icon-js";
 
@@ -67,7 +74,7 @@ export default function UploadsPage() {
       {
         field: "Image",
         pinned: "left",
-        filter:false,
+        filter: false,
         width: 140,
         cellRenderer: (params) => {
           return (
@@ -137,7 +144,10 @@ export default function UploadsPage() {
               >
                 <LiaTrashAltSolid className=" h-5 w-5" />
               </Button>
-              <Clipboard.WithIconText   valueToCopy={params.data.url} label="Copy Link" />
+              <Clipboard.WithIconText
+                valueToCopy={params.data.url}
+                label="Copy Link"
+              />
             </div>
           );
         },

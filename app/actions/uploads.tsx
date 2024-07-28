@@ -19,7 +19,7 @@ export const getUploads = async (accessToken): Promise<UploadItem[]> => {
   }
 };
 
-export const generateSignedUrl = async (fileName, accessToken)=> {
+export const generateSignedUrl = async (fileName, accessToken) => {
   try {
     const response = await fetch(`${URL}?name=${fileName}`, {
       method: "POST",

@@ -188,7 +188,7 @@ export type ResumeItemPropsType = {
   title: string;
   subtitle: string;
   place: string;
-  startDate: string;
+  startDate: string | any;
   endDate: string;
   listing: string[];
   description?: string;

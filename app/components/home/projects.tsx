@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-import { Button } from "flowbite-react";
+import { Button, Badge } from "flowbite-react";
 import Link from "next/link";
 import {
   LiaArrowRightSolid,
@@ -62,7 +62,10 @@ export default function Projects({
 
               <div className="">
                 {projectItemEntries.map(
-                  ({ github, demo, title, content }: any, index: any) => (
+                  (
+                    { github, demo, title, content, stacks }: any,
+                    index: any
+                  ) => (
                     <div
                       key={index}
                       className="mb-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4 md:p-8"
@@ -70,8 +73,21 @@ export default function Projects({
                       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {title}
                       </h5>
+                      <div
+                        className="font-normal text-gray-700 dark:text-gray-400 pb-6"
+                        dangerouslySetInnerHTML={{ __html: content }}
+                      ></div>
                       <p className="font-normal text-gray-700 dark:text-gray-400 pb-6">
-                        {content}
+                        {stacks?.map((item, index) => (
+                          <a
+                            href={item?.url}
+                            target="_blank"
+                            key={index}
+                            className="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-blue-400 mb-2 mr-2"
+                          >
+                            {item?.name}
+                          </a>
+                        ))}
                       </p>
                       <div className="flex">
                         {github && (

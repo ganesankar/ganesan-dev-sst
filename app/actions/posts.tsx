@@ -1,4 +1,3 @@
-
 import { toast } from "react-toastify";
 import { PostItem } from "@/types/api";
 const URL = `${process.env.NEXT_PUBLIC_API_URL}/posts/`;
@@ -37,7 +36,8 @@ export const getPostBySlug = async (slug, accessToken): Promise<PostItem> => {
 
 export const updatePost = async (item, accessToken): Promise<PostItem> => {
   try {
-    const response = await fetch(`${URL}${item.slug}`, {
+    const id = item?.createdOn ? item.slug : "new";
+    const response = await fetch(`${URL}${id}`, {
       method: "POST",
       headers: {
         Authorization: accessToken,

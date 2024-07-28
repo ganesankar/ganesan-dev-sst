@@ -1,4 +1,3 @@
-
 import { toast } from "react-toastify";
 import { ProjectItem } from "@/types/api";
 const URL = `${process.env.NEXT_PUBLIC_API_URL}/projects/`;
@@ -21,7 +20,10 @@ export const getProjects = async (accessToken): Promise<ProjectItem[]> => {
   }
 };
 
-export const getProjectBySlug = async (slug, accessToken): Promise<ProjectItem> => {
+export const getProjectBySlug = async (
+  slug,
+  accessToken
+): Promise<ProjectItem> => {
   try {
     const response = await fetch(`${URL}${slug}`, {
       headers: {
@@ -35,9 +37,13 @@ export const getProjectBySlug = async (slug, accessToken): Promise<ProjectItem> 
   }
 };
 
-export const updateProject = async (item, accessToken): Promise<ProjectItem> => {
+export const updateProject = async (
+  item,
+  accessToken
+): Promise<ProjectItem> => {
   try {
-    const response = await fetch(`${URL}${item.slug}`, {
+    const id = item?.createdOn ? item.slug : "new";
+    const response = await fetch(`${URL}${id}`, {
       method: "POST",
       headers: {
         Authorization: accessToken,
@@ -55,7 +61,10 @@ export const updateProject = async (item, accessToken): Promise<ProjectItem> => 
     return error;
   }
 };
-export const deleteProject = async (slug, accessToken): Promise<ProjectItem> => {
+export const deleteProject = async (
+  slug,
+  accessToken
+): Promise<ProjectItem> => {
   try {
     const response = await fetch(`${URL}${slug}`, {
       method: "DELETE",

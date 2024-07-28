@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Table } from "sst/node/table";
 import moment from "moment";
 import { dynamoDbScan } from "@/app/util/dynamoDb";
+export const dynamic = 'force-dynamic' // defaults to auto
 
 export const GET = async (req) => {
   try {
@@ -22,7 +23,8 @@ export const GET = async (req) => {
       })
         .filter((i) => i.isPublished > 0)
         .sort((a, b) => {
-          return b.publishedOn - a.publishedOn;
+          //return b.publishedOn - a.publishedOn;
+          return moment(b.publishedOn).format("X") - moment(a.publishedOn).format("X");
         });
     }
     return NextResponse.json(posts);

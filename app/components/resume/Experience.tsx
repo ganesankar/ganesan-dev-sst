@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import TimeLineAccordian from "@/app/components/resume/TimeLineAccordian";
 import { ResumeItemsPropsType } from "@/types/index";
