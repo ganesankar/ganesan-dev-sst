@@ -26,7 +26,7 @@ export default function Header() {
   const exMenu: NavLinkType[] = [
     {
       name: "Resume",
-      url: "resume",
+      url: "/resume",
     },
   ];
   return (

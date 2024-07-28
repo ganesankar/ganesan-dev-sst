@@ -1,4 +1,3 @@
-
 import { toast } from "react-toastify";
 import { ResumeItem } from "@/types/api";
 const URL = `${process.env.NEXT_PUBLIC_API_URL}/resume/`;
@@ -37,7 +36,7 @@ export const getResumeById = async (slug, accessToken): Promise<ResumeItem> => {
 
 export const updateResume = async (item, accessToken): Promise<ResumeItem> => {
   try {
-    const response = await fetch(`${URL}${item?.id || 'new'}`, {
+    const response = await fetch(`${URL}${item?.id || "new"}`, {
       method: "POST",
       headers: {
         Authorization: accessToken,

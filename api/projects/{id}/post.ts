@@ -34,13 +34,14 @@ export const handler = ApiHandler(async (evt) => {
           slug: id,
         },
         UpdateExpression:
-          "set content = :content, isPublished = :isPublished, title = :title , demo = :demo, github = :github, updatedOn = :updatedOn  ",
+          "set content = :content, isPublished = :isPublished, title = :title , demo = :demo, github = :github, updatedOn = :updatedOn, stacks = :stacks  ",
         ExpressionAttributeValues: {
           ":content": data?.content,
           ":isPublished": data?.isPublished,
           ":title": data?.title,
           ":demo": data?.demo,
           ":github": data?.github,
+          ":stacks": data?.stacks,
           ":updatedOn": moment().format(),
         },
         ReturnValues: "UPDATED_NEW",

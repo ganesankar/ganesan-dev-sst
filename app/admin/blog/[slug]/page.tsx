@@ -59,8 +59,8 @@ export default function BlogPost() {
       if (slug !== "new") {
         const response = await getPostBySlug(slug, session?.accessToken);
         const blogPost = { ...response };
-        setBlogPost(blogPost);
-        setBlogPostBackup(blogPost);
+        setBlogPost(blogPost ? JSON.parse(JSON.stringify(blogPost)) : {});
+        setBlogPostBackup(blogPost ? JSON.parse(JSON.stringify(blogPost)) : {});
       }
 
       setBlogPostLoading(false);
@@ -151,128 +151,104 @@ export default function BlogPost() {
       </div>
       <div className="container fluid">
         <form className="">
-          <div className="row mb-3 mt-4">
-            <div className="col-sm-12 col-md-6">
-              <div className="mb-2 block">
-                <Label htmlFor="small" value="Title" />
-              </div>
-              <TextInput
-                id="Title"
-                type="text"
-                value={blogPost.title}
-                required
-                onChange={(event) => updateFields("title", event.target.value)}
-                placeholder="Title"
-                helperText={<> {formError && "Title is Mandatory"}</>}
-              />
-            </div>
-            <div className="col-sm-12 col-md-6">
-              <div className="mb-2 block">
-                <div className="flex flex-wrap gap-1 pt-6">
-                  <Label htmlFor="small" value="Slug" className="pt-1 mr-2" />{" "}
-                 {slug == "new" &&   <Slugify value={blogPost?.title} />}
-                </div>
-              </div>
-              <TextInput
-                id="slug"
-                type="text"
-                value={blogPost.slug}
-                required
-                onChange={(event) => updateFields("slug", event.target.value)}
-                placeholder="slug"
-                disabled={slug !== "new"}
-                helperText={<> {formError && "Slug is Mandatory"}</>}
-              />
+          <div className="mb-2 block">
+            <Label htmlFor="small" value="Title" />
+          </div>
+          <TextInput
+            id="Title"
+            type="text"
+            value={blogPost.title}
+            required
+            onChange={(event) => updateFields("title", event.target.value)}
+            placeholder="Title"
+            helperText={<> {formError && "Title is Mandatory"}</>}
+          />
+          <div className="mb-2 block">
+            <div className="flex flex-wrap gap-1 pt-6">
+              <Label htmlFor="small" value="Slug" className="pt-1 mr-2" />{" "}
+              {slug == "new" && <Slugify value={blogPost?.title} />}
             </div>
           </div>
-          <div className="row mb-3 mt-4">
-            <div className="col-sm-12 col-md-12">
-              <div className="mb-2 block">
-                <Label htmlFor="small" value="Image" />
-              </div>
+          <TextInput
+            id="slug"
+            type="text"
+            value={blogPost.slug}
+            required
+            onChange={(event) => updateFields("slug", event.target.value)}
+            placeholder="slug"
+            disabled={slug !== "new"}
+            helperText={<> {formError && "Slug is Mandatory"}</>}
+          />
+          <div className="mb-2 block">
+            <Label htmlFor="small" value="Image" />
+          </div>
 
-              <div className="flex pr-3">
-                <div className="flex-1 pr-3">
-                  <TextInput
-                    id="Image"
-                    type="text"
-                    value={blogPost.img}
-                    required
-                    onChange={(event) =>
-                      updateFields("img", event.target.value)
-                    }
-                    placeholder="image s3 path"
-                  />
-                </div>
-                <div className="flex-none w-24">
-                  <AttachmentPicker
-                    updateImage={updateImage}
-                    selectedImg={blogPost.img}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row mb-3 mt-4">
-            <div className="col-sm-12 col-md-12">
-              <div className="mb-2 block">
-                <Label htmlFor="small" value="published On" />
-              </div>
-              <Datepicker
-                id="publishedOn"
-                type="text"
-                value={
-                  blogPost?.publishedOn
-                    ? moment(blogPost?.publishedOn).toDate().toString()
-                    : "--/--/--"
-                }
-                required
-                onSelectedDateChanged={(d) => {
-                  updateFields("publishedOn", d);
-                }}
-                placeholder="published On"
-                helperText={<> {formError && "Published Date is Mandatory"}</>}
-              />
-            </div>
-          </div>
-          <div className="row mb-3 mt-4">
-            <div className="col-sm-12 col-md-4">
-              <div className="mb-2 block">
-                <Label htmlFor="small" value="Tags" />
-              </div>
+          <div className="flex pr-3">
+            <div className="flex-1 pr-3">
               <TextInput
-                id="Tags"
+                id="Image"
                 type="text"
-                value={
-                  blogPost.tags && blogPost.tags.length > 0
-                    ? blogPost.tags.join(",")
-                    : ""
-                }
+                value={blogPost.img}
                 required
-                onChange={(event) => updateFields("tags", event.target.value)}
-                placeholder="Tags"
+                onChange={(event) => updateFields("img", event.target.value)}
+                placeholder="image s3 path"
               />
             </div>
-            <div className="col-sm-12 col-md-4 pt-3">
-              <div className="mb-2 block">
-                <Checkbox
-                  id="small"
-                  checked={blogPost.isPublished == 1}
-                  onChange={(event) =>
-                    updateFields("isPublished", event.target.checked ? 1 : 0)
-                  }
-                />{" "}
-                <Label htmlFor="small" value="isPublished" />
-              </div>
+            <div className="flex-none w-24">
+              <AttachmentPicker
+                updateImage={updateImage}
+                selectedImg={blogPost.img}
+              />
             </div>
           </div>
-          <div className="row mb-3 mt-4">
-            <div className="col-sm-12 col-md-12">
-              <div className="mb-2 block">
-                <Label htmlFor="small" value="Content in HTML" />
-              </div>
-              <div className="mb-2 block" style={{ height: 250 }}>
-                {/*         
+          <div className="mb-2 block">
+            <Label htmlFor="small" value="published On" />
+          </div>
+          <Datepicker
+            id="publishedOn"
+            type="text"
+            value={
+              blogPost?.publishedOn
+                ? moment(blogPost?.publishedOn).toDate().toString()
+                : "--/--/--"
+            }
+            required
+            onSelectedDateChanged={(d) => {
+              updateFields("publishedOn", d);
+            }}
+            placeholder="published On"
+            helperText={<> {formError && "Published Date is Mandatory"}</>}
+          />
+          <div className="mb-2 block">
+            <Label htmlFor="small" value="Tags" />
+          </div>
+          <TextInput
+            id="Tags"
+            type="text"
+            value={
+              blogPost.tags && blogPost.tags.length > 0
+                ? blogPost.tags.join(",")
+                : ""
+            }
+            required
+            onChange={(event) => updateFields("tags", event.target.value)}
+            placeholder="Tags"
+          />
+          <div className="mb-2 block">
+            <Checkbox
+              id="small"
+              checked={blogPost.isPublished == 1}
+              onChange={(event) =>
+                updateFields("isPublished", event.target.checked ? 1 : 0)
+              }
+            />{" "}
+            <Label htmlFor="small" value="isPublished" />
+          </div>
+          <div className="mb-2 block">
+            <Label htmlFor="small" value="Content in HTML" />
+          </div>
+          <div className="mb-2 block" style={{ height: 250 }}>
+            {/*         
                <Textarea
                 id="Content in HTML"
                 value={blogPost.content}
@@ -283,15 +259,13 @@ export default function BlogPost() {
                 rows={1}
                 placeholder="as raw HTML"
               /> */}
-                <Editor
-                  onChange={setContent}
-                  value={blogPost.content}
-                  placeholder="Write something..."
-                />
-              </div>
-              {formError && <div className="">Content is Mandatory</div>}
-            </div>
+            <Editor
+              onChange={setContent}
+              value={blogPost.content}
+              placeholder="Write something..."
+            />
           </div>
+          {formError && <div className="">Content is Mandatory</div>}
         </form>
       </div>
     </div>

@@ -6,7 +6,14 @@ import { useSession } from "next-auth/react";
 import { ColDef } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import { Button, Spinner, FileInput, Label, Modal ,Clipboard } from "flowbite-react";
+import {
+  Button,
+  Spinner,
+  FileInput,
+  Label,
+  Modal,
+  Clipboard,
+} from "flowbite-react";
 import { toast } from "react-toastify";
 import { getMaterialFileIcon } from "file-extension-icon-js";
 
@@ -34,15 +41,7 @@ export default function UploadsPage() {
 
   const dateFilterParams = {
     comparator: function (filterLocalDateAtMidnight, cellValue) {
-      var dateAsString = cellValue?.includes("T")
-        ? cellValue.split("T")[0]
-        : cellValue;
-      var dateParts = dateAsString.split("/");
-      var cellDate = new Date(
-        Number(dateParts[2]),
-        Number(dateParts[1]) - 1,
-        Number(dateParts[0])
-      );
+      var cellDate = new Date(cellValue * 1000);
       if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
         return 0;
       }
@@ -67,7 +66,7 @@ export default function UploadsPage() {
       {
         field: "Image",
         pinned: "left",
-        filter:false,
+        filter: false,
         width: 140,
         cellRenderer: (params) => {
           return (
@@ -107,6 +106,9 @@ export default function UploadsPage() {
         field: "modified",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.modified).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.modified).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,
@@ -137,7 +139,10 @@ export default function UploadsPage() {
               >
                 <LiaTrashAltSolid className=" h-5 w-5" />
               </Button>
-              <Clipboard.WithIconText   valueToCopy={params.data.url} label="Copy Link" />
+              <Clipboard.WithIconText
+                valueToCopy={params.data.url}
+                label="Copy Link"
+              />
             </div>
           );
         },

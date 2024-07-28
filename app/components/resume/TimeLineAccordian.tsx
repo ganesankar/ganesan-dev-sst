@@ -21,13 +21,11 @@ function TimeLineAccordian({ content, title }: Props) {
                   <DisclosureButton className="w-full py-2 text-left">
                     <Timeline.Time>
                       {item.startDate !== "current"
-                        ? moment(item.startDate, "DD-MM-YYYY").format(
-                            "MMM, YYYY"
-                          )
+                        ? moment(item.startDate).format("MMM, YYYY")
                         : item.startDate}
                       {item.endDate ? " - " : ""}
                       {item.endDate && item.endDate !== "P"
-                        ? moment(item.endDate, "DD-MM-YYYY").format("MMM, YYYY")
+                        ? moment(item.endDate).format("MMM, YYYY")
                         : ""}
                       {item.endDate && item.endDate === "P" ? "Present" : ""}{" "}
                     </Timeline.Time>

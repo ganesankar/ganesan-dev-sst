@@ -23,15 +23,7 @@ export default function ProjectsPage() {
   const [apiData, setApiData] = useState<ProjectItem[]>([]);
   const dateFilterParams = {
     comparator: function (filterLocalDateAtMidnight, cellValue) {
-      var dateAsString = cellValue?.includes("T")
-        ? cellValue.split("T")[0]
-        : cellValue;
-      var dateParts = dateAsString.split("/");
-      var cellDate = new Date(
-        Number(dateParts[2]),
-        Number(dateParts[1]) - 1,
-        Number(dateParts[0])
-      );
+      const cellDate = new Date(cellValue * 1000);
       if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
         return 0;
       }
@@ -69,11 +61,14 @@ export default function ProjectsPage() {
           );
         },
       },
-      
+
       {
         field: "createdOn",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.createdOn).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.createdOn).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,
@@ -82,6 +77,9 @@ export default function ProjectsPage() {
         field: "modifiedOn",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.modifiedOn).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.modifiedOn).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,

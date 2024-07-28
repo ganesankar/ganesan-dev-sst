@@ -22,7 +22,7 @@ export default function Home() {
       <About key="about" {...aboutContent} />
       <Work key="work" {...workContent} />
       <Projects key="project" {...projectContent} />
-      <Blog key="blog" {...blogContent} /> 
+      <Blog key="blog" {...blogContent} />
     </div>
   );
 }

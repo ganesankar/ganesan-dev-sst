@@ -62,8 +62,10 @@ export default function ResumeEdit() {
       if (slug !== "new") {
         const response = await getResumeById(slug, session?.accessToken);
         const resumeItem = { ...response };
-        setResumeItem(resumeItem);
-        setResumeItemBackup(resumeItem);
+        setResumeItem(resumeItem ? JSON.parse(JSON.stringify(resumeItem)) : {});
+        setResumeItemBackup(
+          resumeItem ? JSON.parse(JSON.stringify(resumeItem)) : {}
+        );
       }
 
       setResumeItemLoading(false);
@@ -102,7 +104,6 @@ export default function ResumeEdit() {
   };
   const updateData = async (e) => {
     let errors = false;
-    const newData = { ...resumeItem };
     const a = [
       "title",
       "subtitle",
@@ -110,21 +111,19 @@ export default function ResumeEdit() {
       "category",
       "description",
       "startDate",
-      "endDate",
-      "listing",
       "place",
     ];
     a.forEach((field) => {
       if (
-        newData[field] === "" ||
-        newData[field] === undefined ||
-        newData[field] === null
+        resumeItem[field] === "" ||
+        resumeItem[field] === undefined ||
+        resumeItem[field] === null
       ) {
         errors = true;
       }
     });
     if (
-      JSON.stringify(newData) === JSON.stringify(resumeItemBackup) ||
+      JSON.stringify(resumeItem) === JSON.stringify(resumeItemBackup) ||
       errors
     ) {
       toast.error("No Changes To Update or Mandatory Fields Missing");
@@ -132,7 +131,7 @@ export default function ResumeEdit() {
     } else {
       try {
         setResumeItemLoading(true);
-        await updateResume(newData, session?.accessToken);
+        await updateResume(resumeItem, session?.accessToken);
         setResumeItemLoading(false);
       } catch (error) {
         toast.error("Failed to update Resume Item");
@@ -178,126 +177,150 @@ export default function ResumeEdit() {
         <form className="px-8 py-8">
           <div className="mb-2 block">
             <Label htmlFor="small" value="Title" />
+
+            <TextInput
+              id="Title"
+              type="text"
+              value={resumeItem.title}
+              required
+              onChange={(event) => updateFields("title", event.target.value)}
+              placeholder="Title"
+              helperText={<> {formError && "Title is Mandatory"}</>}
+            />
           </div>
-          <TextInput
-            id="Title"
-            type="text"
-            value={resumeItem.title}
-            required
-            onChange={(event) => updateFields("title", event.target.value)}
-            placeholder="Title"
-            helperText={<> {formError && "Title is Mandatory"}</>}
-          />
           <div className="mb-2 block">
             <Label htmlFor="small" value="Sub Title" />
+
+            <TextInput
+              id="subtitle"
+              type="text"
+              value={resumeItem.subtitle}
+              required
+              onChange={(event) => updateFields("subtitle", event.target.value)}
+              placeholder="Title"
+              helperText={<> {formError && "subtitle is Mandatory"}</>}
+            />
           </div>
-          <TextInput
-            id="subtitle"
-            type="text"
-            value={resumeItem.subtitle}
-            required
-            onChange={(event) => updateFields("subtitle", event.target.value)}
-            placeholder="Title"
-            helperText={<> {formError && "subtitle is Mandatory"}</>}
-          />
           <div className="mb-2 block">
             <Label htmlFor="small" value="Category" />
+
+            <Select
+              id="countries"
+              required
+              onChange={(event) => updateFields("category", event.target.value)}
+            >
+              {resumeCategory?.map((item, index) => (
+                <option
+                  key={`adminSideBarLink${index}`}
+                  value={item}
+                  selected={resumeItem.category == item}
+                >
+                  {item}
+                </option>
+              ))}
+            </Select>
           </div>
-          <Select
-            id="countries"
-            required
-            onChange={(event) => updateFields("category", event.target.value)}
-          >
-            {resumeCategory?.map((item, index) => (
-              <option
-                key={`adminSideBarLink${index}`}
-                value={item}
-                selected={resumeItem.category == item}
-              >
-                {item}
-              </option>
-            ))}
-          </Select>
           <div className="mb-2 block">
             <Label htmlFor="small" value="Place" />
+
+            <TextInput
+              id="place"
+              type="text"
+              value={resumeItem.place}
+              required
+              onChange={(event) => updateFields("place", event.target.value)}
+              placeholder="place"
+              helperText={<> {formError && "place is Mandatory"}</>}
+            />
           </div>
-          <TextInput
-            id="place"
-            type="text"
-            value={resumeItem.place}
-            required
-            onChange={(event) => updateFields("place", event.target.value)}
-            placeholder="place"
-            helperText={<> {formError && "place is Mandatory"}</>}
-          />
           <div className="mb-2 block">
             <Label htmlFor="small" value="Description" />
-          </div>
-          <div className="mb-2 block">
+
             <Textarea
               id="description"
               value={resumeItem.description}
               required
-              onChange={(event) => updateFields("description", event.target.value)}
+              onChange={(event) =>
+                updateFields("description", event.target.value)
+              }
               rows={5}
               placeholder="as raw HTML"
               helperText={<> {formError && "description is Mandatory"}</>}
             />
           </div>
           <div className="mb-2 block ">
-            <div className="flex mr-5">
-              <Label htmlFor="small" value="List" className="relative  w-full " />
-          
-            <div className="relativepl-5">
-              <Button
-                color="gray"
-                pill
-                size="xs"
-                onClick={(d) => {
-                  insertlistingFields("listing");
-                }}
-              >
-                Add
-              </Button>
-            </div>
-          </div>  </div>
-          <div className="mb-2 block">
-            {resumeItem.listing.map((item: any, index: any) => (
-              <div className="flex mb-2" key={`resumelistingItem${index}`}>
-                {" "}
-                <span className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                  {index + 1}
-                </span>
-                <div
-                  id="dropdown"
-                  className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-                ></div>
-                <div className="relative w-full">
-                  <input
-                    id={`resumelistingItem${index}`}
-                    type="text"
-                    value={item}
-                    required
-                    onChange={(event) =>
-                      updatelistingFields("listing", index, event.target.value)
-                    }
-                    className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                    placeholder="Enter List"
-                  />
-                  <button
-                    type="submit"
-                    onClick={(d) => {
-                      removelistingFields("listing", index);
-                    }}
-                    className="absolute top-0 end-0 p-2.5 h-full text-sm font-medium text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    <LiaTrashAltSolid className=" h-5 w-5" />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+            <div className="flex">
+              <Label
+                htmlFor="small"
+                value="List"
+                className="relative  w-full "
+              />
 
+              <div className="relativepl-5">
+                <Button
+                  color="blue"
+                  pill
+                  size="sm"
+                  onClick={(d) => {
+                    insertlistingFields("listing");
+                  }}
+                >
+                  Add
+                </Button>
+              </div>
+            </div>{" "}
+          </div>
+          <div className="mb-2 block">
+            {resumeItem?.listing?.length > 0 ? (
+              resumeItem.listing?.map((item: any, index: any) => (
+                <div className="flex mb-2" key={`resumelistingItem${index}`}>
+                  {" "}
+                  <span className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                    {index + 1}
+                  </span>
+                  <div
+                    id="dropdown"
+                    className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                  ></div>
+                  <div className="relative w-full">
+                    <input
+                      id={`resumelistingItem${index}`}
+                      type="text"
+                      value={item}
+                      required
+                      onChange={(event) =>
+                        updatelistingFields(
+                          "listing",
+                          index,
+                          event.target.value
+                        )
+                      }
+                      className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                      placeholder="Enter List"
+                    />
+                    <button
+                      type="submit"
+                      onClick={() => {
+                        removelistingFields("listing", index);
+                      }}
+                      className="absolute top-0 end-0 p-2.5 h-full text-sm font-medium text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      <LiaTrashAltSolid className=" h-5 w-5" />
+                    </button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-center">
+                <h3 className="text-gray-900 dark:text-white text-xl font-extrabold mb-2">
+                  No Listings Available
+                </h3>
+                <p className="font-normal text-gray-500 dark:text-gray-400 mb-4">
+                  Please Add any
+                </p>
+              </div>
+            )}
+          </div>
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
               {" "}
@@ -353,6 +376,11 @@ export default function ResumeEdit() {
           </div>
 
           <div className="mb-2 block">
+            <Label
+              htmlFor="isPublished"
+              value="Is Published"
+              className="mr-3"
+            />
             <Checkbox
               id="isPublished"
               checked={resumeItem.isPublished == 1}
@@ -360,7 +388,6 @@ export default function ResumeEdit() {
                 updateFields("isPublished", event.target.checked ? 1 : 0)
               }
             />{" "}
-            <Label htmlFor="isPublished" value="isPublished" />
           </div>
         </form>
       </div>

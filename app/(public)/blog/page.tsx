@@ -37,7 +37,12 @@ export default function BlogPage() {
           });
         newArray = ordered.map((year) => ({
           year: year,
-          list: groups[year],
+          list:
+            groups[year].length > 0
+              ? groups[year].sort((a, b) => {
+                  return b.publishedOn - a.publishedOn;
+                })
+              : [],
         }));
         setBlogPostsLoading(false);
         setBlogPostEntries(newArray);

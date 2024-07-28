@@ -23,15 +23,18 @@ export default function ResumePage() {
   const [apiData, setApiData] = useState<ResumeItem[]>([]);
   const dateFilterParams = {
     comparator: function (filterLocalDateAtMidnight, cellValue) {
-      var dateAsString = cellValue?.includes("T")
+      /* 
+      const dateAsString = cellValue?.includes("T")
         ? cellValue.split("T")[0]
         : cellValue;
-      var dateParts = dateAsString.split("/");
-      var cellDate = new Date(
+      const dateParts = dateAsString.split("/");
+      const cellDate = new Date(
         Number(dateParts[2]),
         Number(dateParts[1]) - 1,
         Number(dateParts[0])
-      );
+      ); 
+      */
+      const cellDate = new Date(cellValue * 1000);
       if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
         return 0;
       }
@@ -69,7 +72,7 @@ export default function ResumePage() {
           );
         },
       },
-      
+
       {
         field: "subTitle",
         filter: "agTextColumnFilter",
@@ -94,6 +97,9 @@ export default function ResumePage() {
         field: "startDate",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.startDate).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.startDate).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,
@@ -102,6 +108,9 @@ export default function ResumePage() {
         field: "endDate",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.endDate).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.endDate).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,
@@ -110,6 +119,9 @@ export default function ResumePage() {
         field: "createdOn",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.createdOn).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.createdOn).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,
@@ -118,6 +130,9 @@ export default function ResumePage() {
         field: "updatedOn",
         filter: "agDateColumnFilter",
         valueGetter: (params) => {
+          return moment(params.data.updatedOn).format("X");
+        },
+        valueFormatter: (params) => {
           return moment(params.data.updatedOn).format("DD/MM/YYYY");
         },
         filterParams: dateFilterParams,
