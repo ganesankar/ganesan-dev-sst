@@ -84,25 +84,17 @@ export default function ContactPage() {
                 {item}
               </p>
             ))}
-            <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 gap-4 pt-4">
+              <div className="flex flex-row justify-center ">
               {contactContent?.social?.map((item, index) => (
-                <Link
-                  key={`contactSocial${index}`}
-                  href={item.link}
-                  target="_blank"
-                >
+                <Link key={index} href={item.link} className="m-2" target="_blank">
                   <Tooltip content={item.text}>
-                    <motion.button
-                      className="text-lg  text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
+                    <span className=" text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
                       {item.icon}
-                    </motion.button>
+                    </span>
                   </Tooltip>
                 </Link>
               ))}
-            </div>
+            </div> 
             <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
               <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 gap-4 pt-4">
                 <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 md:p-8 mt-6">
