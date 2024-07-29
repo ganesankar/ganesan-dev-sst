@@ -37,7 +37,7 @@ export default function Header() {
       >
         <Navbar.Brand as={Link} href="/">
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Ganesan Karuppaiya
+            Ganesan  <span className ="hidden sm:inline-block">Karuppaiya</span>
           </span>
         </Navbar.Brand>
         <Navbar.Collapse>

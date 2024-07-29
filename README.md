@@ -1,12 +1,30 @@
 
 # ganesan-dev-sst [(link)](https://www.ganesan.dev) 
+Personal website source code
 
+# Architecture:
+### Frontend
+* Next.js Frontend with Server Actions React Component states
+* Responsive Design with tailwind css and flowbite library
+
+### Backend:
+* AWS Dynamodb for blog, resume, project listing and S3 for files upload 
+* AWS Lambda with AWS Cognito authendication 
+* Deployed to AWS using CDK and SST to manage application settings.
 
 ## Local Development
+
+#### Prerequisites
+Make sure you have installed all of the following prerequisites on your development machine:
+* Git setup, 
+* Node.js,
+* AWS Account with domain registed (and nameserver mapped)
+* AWS CLI or Github actions setup for deployment   
+* Resend Key and NEXTAUTH_SECRET generated    
+
 To run a local development server, please ensure you have at least Node.js version 20 installed and added to your PATH.
 
-1. Install dependencies:
-
+1. Install dependencies 
     ```
     npm install
     ```

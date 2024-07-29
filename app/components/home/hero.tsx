@@ -44,17 +44,13 @@ export default function Hero({
             <p className="mb-8 text-lg font-normal text-gray-500 dark:text-gray-400 sm:px-16 lg:px-48 lg:text-xl">
               {subText}
             </p>
-            <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 gap-4 ">
+            <div className="flex flex-row justify-center ">
               {buttons?.map((item, index) => (
-                <Link key={index} href={item.link}>
+                <Link key={index} href={item.link} className="m-2" target="_blank">
                   <Tooltip content={item.text}>
-                    <motion.button
-                      className=" text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
+                    <span className=" text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
                       {item.icon}
-                    </motion.button>
+                    </span>
                   </Tooltip>
                 </Link>
               ))}
