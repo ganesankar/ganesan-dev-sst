@@ -46,7 +46,7 @@ export const author = {
 export const seoData: SeoPropType = {
   title: "Ganesan Karuppaiya | Full Stack Lead Developer | UX Designer",
   description:
-    "Ganesan Karuppaiya is a Full Stack Lead Developer  who specializes in building (and occasionally designing) exceptional visual interfaces.",
+    "Ganesan Karuppaiya serves as a Full Stack Lead Developer, with a focus on creating outstanding visual interfaces, while also engaging in design activities on occasion.",
   author: author.name,
   image: "https://avatars.githubusercontent.com/u/56182707",
   url: "https://ganesan.dev/",
@@ -64,7 +64,7 @@ export const FooterContactContent: FooterContactPropsType = {
   prefix: "What's Next",
   title: "Get In Touch",
   text: [
-    "I am not currently looking for freelance opportunities, but my inbox is always open to collaborate with ambitious people; just introduce yourself, will get in touch!.",
+    "I am not actively seeking freelance opportunities at this time; however, I welcome the chance to collaborate with driven individuals. Please feel free to introduce yourself, and I will reach out to you.",
   ],
   links: [
     {
@@ -87,7 +87,7 @@ export const heroContent: HomeHeroPropsType = {
   name: "Ganesan Karuppaiya",
   title: "I build things for the web",
   subText:
-    " I'm a Chennai (India)-based software engineer specialized in building exceptional digital experiences; Occasionally designing and mostly developing web products right from intial idea from conception to complete solution.",
+    "I am a software engineer located in Chennai, India, with a specialization in creating outstanding digital experiences. My work primarily involves the development of web products, encompassing the entire process from the initial concept to the final solution, with occasional involvement in design.",
   image: "https://avatars.githubusercontent.com/u/56182707?v=4",
   buttons: [
     {
@@ -122,9 +122,9 @@ export const aboutContent: HomeAboutPropsType = {
   prefix: "About Me",
   title: "I am passionate about new technologies",
   text: [
-    "I´m a full-stack developer and IT professional with almost fifteen  years of experience in the industry, transforming the technical aspects of various firms.  I´m well known for my ability to think outside the box and be an extremely versatile developer who works on a variety of projects and adeptly adapts to unique circumstances of each project.",
-    "In my current role as Full Stack Lead Developer, I´m leading  development team to provide solutions ranging from creating solutions and complete systems for international clients.",
-    "My willingness to help others and solve issues has made me delve into projects and deliver beyond expectations in a detail-oriented approach that can be seen on the final product. If I find something that I don’t fully dominate, I always go the extra mile by researching, ensuring excellent results to my clients. I consider myself a team player and a great organizer, utilizing clear-cut communication to create open and productive relationships with fellow team members.",
+    "I am a full-stack developer and IT professional with nearly fifteen years of experience in the industry, specializing in enhancing the technical frameworks of various organizations. I am recognized for my innovative thinking and versatility, allowing me to engage in a diverse array of projects while effectively adapting to the specific requirements of each initiative.",
+    "In my current position as Full Stack Lead Developer, I oversee a development team tasked with delivering solutions that encompass the creation of systems for international clients.",
+    "My commitment to assisting others and resolving challenges has driven me to immerse myself in projects, consistently exceeding expectations through a meticulous approach that is evident in the final outcomes. When I encounter areas where my expertise is limited, I proactively invest time in research to ensure outstanding results for my clients. I pride myself on being a collaborative team member and an effective organizer, employing clear communication to foster open and productive relationships with my colleagues.",
   ],
 };
 
@@ -133,28 +133,28 @@ export const workContent: HomeWorkPropsType = {
   prefix: "At Work",
   title: "Here is what I do",
   text: [
-    "I design and develop web applications, I understand the perfect user experience should look good and work even better.",
-    "I develop full-stack, bespoke NodeJs and AWS solutions with modern tooling and processes, using ReactJS, Redux, NodeJS, NextJS, Vue, NuxtJS, AWS Lambda and other services, I will oversee complete project through discovery, development, go-live, and iterative improvement. .",
+    "I specialize in the design and development of web applications, recognizing that an optimal user experience must not only be visually appealing but also function seamlessly.",
+    "I create customized full-stack solutions utilizing Node.js and AWS, employing contemporary tools and methodologies. My expertise includes React.js, Redux, Node.js, Next.js, Vue, Nuxt.js, AWS Lambda, and various other services. I will manage the entire project lifecycle, from initial discovery and development to deployment and ongoing enhancements.",
   ],
   services: [
     {
       icon: <LiaCodeSolid />,
       title: "Full Stack Development",
       points: [
-        "Building Responsive SPA using ReactJS",
-        "Building RESTful APIS in and using AWS",
-        "Building Functional and Automation testing",
-        "Building SSR  Websites using NextJs and NuxtJS",
-        "Creating AWS resources as with Terraforms and Serverless",
+        "Developing Responsive Single Page Applications (SPAs) with ReactJS.",
+        "Creating RESTful APIs utilizing AWS.",
+        "Implementing Functional and Automation Testing.",
+        "Constructing Server-Side Rendered (SSR) Websites with Next.js and Nuxt.js.",
+        "Provisioning AWS resources using  Cloudformation, Terraform & Serverless.",
       ],
     },
     {
       icon: <LiaPaintBrushSolid />,
       title: "UI/UX Designing",
       points: [
-        "Designing user-friendly interfaces like wireframes and mockups with figma",
-        "Creating design systems and style guides",
-        "Providing user-friendly design solutions",
+        "Developing intuitive interfaces such as wireframes and mockups utilizing Figma.",
+        "Establishing design systems and style guidelines.",
+        "Delivering design solutions that prioritize user-friendliness.",
       ],
     },
   ],
@@ -164,8 +164,8 @@ export const projectContent: HomeProjectPropsType = {
   prefix: "At no time",
   title: "Worked on some projects",
   text: [
-    "I have been lucky enough to work with some awesomely brilliant companies and people over the years, allowing me to work on some interesting, challenging, and fantastic projects.",
-    " But listing here some personal projects, for details about projects i developed for my companies will be available in my resume",
+    "I have had the privilege of collaborating with exceptionally talented companies and individuals throughout my career, which has enabled me to engage in a variety of intriguing, challenging, and remarkable projects.",
+    "However, I will highlight a few personal projects here, while further details regarding the projects I developed for my employers can be found in my resume.",
   ],
 };
 export const blogContent: HomeBlogPropsType = {
@@ -173,7 +173,7 @@ export const blogContent: HomeBlogPropsType = {
   prefix: "Rarely",
   title: "I Write Some Times",
   text: [
-    "i am not professional blogger and not poet too.. I frequently read  articles in all form of technology, science and literature,in very rare occasions with peace of mind, will write sometime and those are listed below.. ",
+    "I do not consider myself a professional blogger or a poet. However, I often engage with articles across various fields, including technology, science, and literature. On rare occasions, I find the tranquility to write, and the results of those efforts are listed below.",
   ],
 };
 
@@ -182,9 +182,9 @@ export const contactContent: ContactPagePropsType = {
   prefix: "If Interested",
   title: "Let Us Connect",
   text: [
-    "To Get in touch, fill the form below and I will reply ASAP.",
-    "BTW, I speak English and Tamil.",
-    "Also available in Below Social Networks.",
+    "To make contact, please complete the form provided below, and I will respond as soon as possible.",
+    "Additionally, I am proficient in English and Tamil.",
+    "You can also connect with me on the following social networks.",
   ],
   social: [
     {
@@ -216,11 +216,6 @@ export const contactContent: ContactPagePropsType = {
       text: "SnapChat",
       link: "https://www.snapchat.com/add/ganesankar",
       icon: <SiSnapchat />,
-    },
-    {
-      text: "Whatsapp",
-      link: "https://api.whatsapp.com/send?phone=919943732416",
-      icon: <SiWhatsapp />,
     },
     {
       text: "Telegram",

@@ -42,14 +42,13 @@ export default function FooterClient() {
           </div>
         </>
       )}
-      
       <hr className="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700"></hr>
       <Popover
         aria-labelledby="default-popover"
         content={
           <div className="w-64 text-sm text-gray-500 dark:text-gray-400 p-5">
             <p className="text-center text-pretty font-normal  text-gray-400 text-sm">
-              Built with{" "}
+              Developed using{" "}
               <Link
                 href="https://sst.dev/"
                 className="text-gray-600 dark:text-gray-200"
@@ -72,7 +71,8 @@ export default function FooterClient() {
                 target="_blank"
               >
                 Tailwind CSS
-              </Link>,&nbsp;
+              </Link>
+              ,&nbsp;
               <Link
                 href="https://flowbite-react.com/"
                 className="text-gray-600 dark:text-gray-200"
@@ -80,7 +80,7 @@ export default function FooterClient() {
               >
                 Flowbite
               </Link>
-              ,&nbsp; in &nbsp;
+              .&nbsp;This project is hosted on
               <Link
                 href="https://aws.amazon.com"
                 className="text-gray-600 dark:text-gray-200"
@@ -88,8 +88,8 @@ export default function FooterClient() {
               >
                 AWS
               </Link>
-              &nbsp; utilizing Lambda, DynamoDB, API Gateway, S3, Cognito 
-              &amp; code available in &nbsp;
+              &nbsp; leveraging services such as Lambda, DynamoDB, API Gateway,
+              S3, and Cognito, &amp; with the source code accessible on &nbsp;
               <Link
                 href="https://github.com/ganesankar/ganesan-dev-sst"
                 className="text-gray-600 dark:text-gray-200"
@@ -105,7 +105,6 @@ export default function FooterClient() {
           <LiaCodeSolid className="h-5 w-5" />
         </Button>
       </Popover>{" "}
-      
     </div>
   );
 }
