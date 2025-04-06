@@ -230,3 +230,10 @@ html.dark .react-confirm-alert-overlay {
 
   background: rgb(41 50 64 / 58%);
 }
+
+pre {
+  background-color: #8282820f;
+  padding: 0;
+  border-radius: 15px;
+  border: 1px solid #8b8b8b38;
+}
