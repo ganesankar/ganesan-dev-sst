@@ -87,7 +87,7 @@ export const heroContent: HomeHeroPropsType = {
   name: "Ganesan Karuppaiya",
   title: "I build things for the web",
   subText:
-    "I am a software engineer located in Chennai, India, with a specialization in creating outstanding digital experiences. My work primarily involves the development of web products, encompassing the entire process from the initial concept to the final solution, with occasional involvement in design.",
+    "I am a software engineer located in Portland, USA, with a specialization in creating outstanding digital experiences. My work primarily involves the development of web products, encompassing the entire process from the initial concept to the final solution, with occasional involvement in design.",
   image: "https://avatars.githubusercontent.com/u/56182707?v=4",
   buttons: [
     {

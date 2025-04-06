@@ -36,6 +36,15 @@ export default function Projects({
       console.error("Error fetching ProjectPost entries:", error);
     }
   };
+  const trimWords = str => {
+    const words = str.split(' ');
+  if (words.length <= 100) {
+    return str;
+  }
+  const trimmedWords = words.slice(0, 100);
+  trimmedWords.push("...")
+  return trimmedWords.join(' ');
+  };
   return (
     <div className="hero min-h-screen" id="projects">
       <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
@@ -70,12 +79,12 @@ export default function Projects({
                       key={index}
                       className="mb-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4 md:p-8"
                     >
-                      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white pb-3">
                         {title}
                       </h5>
                       <div className="font-normal text-gray-700 dark:text-gray-400 pb-6">
                         {" "}
-                        {content}
+                        {content && trimWords(content)}
                       </div>
                       <p className="font-normal text-gray-700 dark:text-gray-400 pb-6">
                         {stacks?.map((item, index) => (

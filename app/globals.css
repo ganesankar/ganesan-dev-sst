@@ -66,6 +66,15 @@ html {
   margin-top: 1em;
 }
 
+.blog-post ol {
+  list-style-type:decimal;
+  margin-left: 20px;
+}
+.blog-post ul {
+  list-style-type:circle;
+  margin-left: 20px;
+}
+
 .Toastify__close-button>svg {
   height: 20px !important;
   width: 20px !important;

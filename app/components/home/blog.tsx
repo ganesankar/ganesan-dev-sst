@@ -69,7 +69,7 @@ export default function Blog({ title, prefix, text, icon }: HomeBlogPropsType) {
                                   ? moment(publishedOn).format("ll")
                                   : ""}
                               </Timeline.Time>
-                              <Timeline.Title>
+                              <Timeline.Title className="pb-2">
                                 <Link href={`/blog/${slug}`}>{title}</Link>
                               </Timeline.Title>
                               <Timeline.Body>
